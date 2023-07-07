@@ -5,7 +5,7 @@ import { LogoStyled as Styled } from './Logo.styled';
 import { ILogoProps } from './Logo.types';
 
 const Logo: React.FC<ILogoProps> = ({ onClick }) => {
-  const text = 'your game';
+  const text = 'CHESS';
   const letters = text.split('');
 
   const handleClick = () => {

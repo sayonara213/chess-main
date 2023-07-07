@@ -20,6 +20,8 @@ export const CustomInputStyled = {
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    align-items: center;
   `,
   Input: styled.input`
     width: 100%;

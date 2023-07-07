@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Auth from '../../../screens/authorization/Auth';
 import Home from '../../../screens/home/Home';
+import Lobby from '../../../screens/lobby/Lobby';
 import { auth } from '../App';
 
 import Layout from './Layout';
@@ -17,6 +18,7 @@ const AppRouter: React.FC = () => {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path={ROUTES.home} element={<Home />} />
+        <Route path={ROUTES.game} element={<Lobby />} />
         <Route path='*' element={<Navigate to={ROUTES.home} replace />} />
       </Route>
     </Routes>
