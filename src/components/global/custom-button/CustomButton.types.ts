@@ -1,12 +1,12 @@
-export type TCustomButtonTypes = 'primary' | 'secondary' | 'red' | 'green';
+export type TCustomButtonTypes = 'primary' | 'secondary' | 'red' | 'green' | 'disabled';
 
 export interface ICustomButtonProps {
   children: JSX.Element | JSX.Element[] | string | string[];
   onClick?: () => void;
-  type?: TCustomButtonTypes;
-  disabled?: boolean;
+  buttonType?: TCustomButtonTypes;
   width?: string;
   height?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export interface ICustomButtonStyledProps {

@@ -17,11 +17,13 @@ const AppRouter: React.FC = () => {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path={ROUTES.home} element={<Home />} />
+        <Route path='*' element={<Navigate to={ROUTES.home} replace />} />
       </Route>
     </Routes>
   ) : (
     <Routes>
       <Route path={ROUTES.auth.login} element={<Auth isLogin={true} />} />
+      <Route path={ROUTES.auth.register} element={<Auth isLogin={false} />} />
       <Route path='*' element={<Navigate to={ROUTES.auth.login} replace />} />
     </Routes>
   );

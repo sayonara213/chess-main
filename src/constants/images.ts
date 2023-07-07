@@ -10,6 +10,10 @@ import doneBlack from '../assets/icons/done-black.svg';
 import done from '../assets/icons/done-white.svg';
 import editBlack from '../assets/icons/edit-black.svg';
 import edit from '../assets/icons/edit-white.svg';
+import hideBlack from '../assets/icons/hide-black.svg';
+import hide from '../assets/icons/hide-white.svg';
+import showBlack from '../assets/icons/show-black.svg';
+import show from '../assets/icons/show-white.svg';
 
 export const IMAGES = {
   bulb,
@@ -24,6 +28,10 @@ export const IMAGES = {
   trashBlack,
   done,
   doneBlack,
+  hide,
+  hideBlack,
+  show,
+  showBlack,
 };
 
 export type TIcon = keyof typeof IMAGES;

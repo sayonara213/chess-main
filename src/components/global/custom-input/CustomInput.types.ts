@@ -1,6 +1,6 @@
 export interface ICustomInputProps {
   value: string;
-  onChange: (text: string) => void;
+  onChange: any;
   placeholder?: string;
   autoFocus?: boolean;
   width?: string;
@@ -9,4 +9,5 @@ export interface ICustomInputProps {
   fontFamily?: string;
   color?: string;
   backgroundColor?: string;
+  isPassword?: boolean;
 }
