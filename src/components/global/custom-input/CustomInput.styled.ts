@@ -16,6 +16,11 @@ export const CustomInputStyled = {
     display: flex;
     flex-direction: column;
   `,
+  InputContainer: styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  `,
   Input: styled.input`
     width: 100%;
     height: 100%;
@@ -27,6 +32,7 @@ export const CustomInputStyled = {
     outline: none;
   `,
   Line: styled.div`
+    margin-top: 5px;
     height: 1px;
     width: 100%;
     background-color: ${({ theme }) => theme.color.light};

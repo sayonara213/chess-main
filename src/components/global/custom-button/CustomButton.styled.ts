@@ -27,6 +27,12 @@ const buttonTypes = () => ({
     color: ${({ theme }) => theme.color.text};
     border: none;
   `,
+  disabled: css`
+    background-color: ${({ theme }) => theme.color.light};
+    color: ${({ theme }) => theme.color.text};
+    border: 2px solid ${({ theme }) => theme.color.light};
+    cursor: not-allowed;
+  `,
 });
 
 export const CustomButtonStyled = {
