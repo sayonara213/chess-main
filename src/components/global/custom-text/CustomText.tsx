@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ICustomTextProps } from './CustomText.types';
-
 import { CustomTextStyled as Styled } from './CustomText.styled';
+
+import { ICustomTextProps } from './CustomText.types';
 
 const CustomText: React.FC<ICustomTextProps> = ({
   children,

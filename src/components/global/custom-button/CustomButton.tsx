@@ -1,7 +1,8 @@
 import React from 'react';
-import { ICustomButtonProps } from './CustomButton.types';
 
 import { CustomButtonStyled as Styled } from './CustomButton.styled';
+
+import { ICustomButtonProps } from './CustomButton.types';
 
 const CustomButton: React.FC<ICustomButtonProps> = ({
   children,

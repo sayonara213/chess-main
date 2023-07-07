@@ -1,7 +1,8 @@
-import themeSlice from './theme.slice';
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
+import themeSlice from './theme.slice';
 
 const persistConfig = {
   key: 'root',

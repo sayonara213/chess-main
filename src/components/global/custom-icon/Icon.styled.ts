@@ -1,6 +1,6 @@
-import { fadeInAnimation } from '../../../constants/animation';
-
 import styled, { css } from 'styled-components';
+
+import { fadeInAnimation } from '../../../constants/animation';
 
 export const IconStyled = {
   Container: styled.img<{ width: string; height: string; click: boolean; fadeIn: boolean }>`

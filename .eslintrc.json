@@ -17,15 +17,18 @@
           "error",
           {
             "groups": [
-              ["^react$", "^react-native", "^react", "^@react"],
+              ["^react", "^@?\\w"], // Node modules import, starts with word
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              ["^\\./(?=.*/)(?!/?$)", "^\\.//?$"], // Sub-directory imports of current directory
+              ["^\\./(?!/?$)", "^\\.//?$"], // Current directory
               ["^screens"],
               ["^components", "^./components"],
-              ["^services", ".services", ".utils", ".api"],
+              ["^services", ".services", ".utils", ".api", "^hooks", "./redux"],
               ["^modals", ".modals"],
               ["^constants", ".constants"],
               ["^types", ".types"],
               ["^assets"],
-              [".styled."]
+              [".styled.", ".css"]
             ]
           }
         ]
@@ -42,7 +45,6 @@
     "react/react-in-jsx-scope": "off",
     "camelcase": "error",
     "spaced-comment": "error",
-    "quotes": ["error", "single"],
     "no-duplicate-imports": "error",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"

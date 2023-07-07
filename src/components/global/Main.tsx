@@ -1,5 +1,7 @@
 import { useAppSelector } from '../../hooks/hooks';
+
 import AppRouter from './router/AppRouter';
+
 import { Theme } from './theme';
 
 const Main: React.FC = () => {

@@ -1,6 +1,6 @@
-import { ICustomTextStyles } from './CustomText.types';
-
 import styled from 'styled-components';
+
+import { ICustomTextStyles } from './CustomText.types';
 
 export const CustomTextStyled = {
   Text: styled.p<ICustomTextStyles>`

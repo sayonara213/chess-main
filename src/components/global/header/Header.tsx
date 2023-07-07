@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ROUTES } from '../../../constants/routes';
-
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { switchTheme } from '../../../redux/theme.slice';
 import Icon from '../custom-icon/Icon';
 import CustomInput from '../custom-input/CustomInput';
 import CustomText from '../custom-text/CustomText';
 import Logo from '../logo/Logo';
+
 import { HeaderStyled as Styled } from './Header.styled';
+
+import { switchTheme } from '../../../redux/theme.slice';
+
+import { ROUTES } from '../../../constants/routes';
 
 const Header: React.FC = () => {
   const theme = useAppSelector((state) => state.theme);

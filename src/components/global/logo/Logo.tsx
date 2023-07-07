@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ILogoProps } from './Logo.types';
-
 import { LogoStyled as Styled } from './Logo.styled';
+
+import { ILogoProps } from './Logo.types';
 
 const Logo: React.FC<ILogoProps> = ({ onClick }) => {
   const text = 'your game';

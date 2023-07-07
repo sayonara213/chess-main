@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ICustomInputProps } from './CustomInput.types';
-
 import { CustomInputStyled as Styled } from './CustomInput.styled';
+
+import { ICustomInputProps } from './CustomInput.types';
 
 const CustomInput: React.FC<ICustomInputProps> = ({
   value,

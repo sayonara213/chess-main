@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CustomText from '../../components/global/custom-text/CustomText';
+
 import { HomeStyled as Styled } from './Home.styled';
 
 const Home: React.FC = () => {

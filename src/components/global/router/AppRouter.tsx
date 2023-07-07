@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import Auth from '../../../screens/authorization/Auth';
+import Home from '../../../screens/home/Home';
+import { auth } from '../App';
+
+import Layout from './Layout';
 
 import { ROUTES } from '../../../constants/routes';
 
-import Home from '../../../screens/home/Home';
-import Layout from './Layout';
-
 const AppRouter: React.FC = () => {
-  return (
+  const [user] = useAuthState(auth);
+
+  return user ? (
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path={ROUTES.home} element={<Home />} />
       </Route>
+    </Routes>
+  ) : (
+    <Routes>
+      <Route path={ROUTES.auth.login} element={<Auth isLogin={true} />} />
+      <Route path='*' element={<Navigate to={ROUTES.auth.login} replace />} />
     </Routes>
   );
 };

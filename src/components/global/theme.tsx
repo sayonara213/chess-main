@@ -1,11 +1,10 @@
 import React from 'react';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import { normalize } from '../../constants/normalize';
 import { reset } from '../../constants/reset';
 
 import { ITheme } from './theme.types';
-
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 export const FONT_SIZE = {
   footer: '12px',

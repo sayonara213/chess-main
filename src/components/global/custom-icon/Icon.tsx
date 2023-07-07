@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
+import { useAppSelector } from '../../../hooks/hooks';
+
+import { IconStyled as Styled } from './Icon.styled';
+
 import { IMAGES, TIcon } from '../../../constants/images';
 
 import { IIconProps } from './Icon.types';
-
-import { useAppSelector } from '../../../hooks/hooks';
-import { IconStyled as Styled } from './Icon.styled';
 
 const Icon: React.FC<IIconProps> = ({
   type,
