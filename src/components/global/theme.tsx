@@ -27,10 +27,10 @@ export const COLOR = {
   dark: '#3a3a3c',
   text: '#ffffff',
   light: '#c2c2c3',
-  circle: '#538d4e',
-  // yellow: '#b59f3b',
-  cross: '#b53b3b',
   lightSecond: '#818384',
+
+  cellWhite: '#e4e1c5',
+  cellBlack: '#5d7c5a',
 };
 
 export const COLOR_LIGHT = {

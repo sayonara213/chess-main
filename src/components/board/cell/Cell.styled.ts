@@ -4,14 +4,14 @@ import { Colors } from '../../../models/Colors';
 
 const cellColors = {
   selected: css`
-    background-color: ${({ theme }) => theme.color.cross};
+    background-color: ${({ theme }) => theme.color.dark};
   `,
 };
 
 export const CellStyled = {
   Cell: styled.div<{ color: Colors; isSelected: boolean }>`
-    background-color: ${({ theme, color, isSelected }) =>
-      color === Colors.BLACK ? theme.color.dark : theme.color.light};
+    background-color: ${({ theme, color }) =>
+      color === Colors.BLACK ? theme.color.cellBlack : theme.color.cellWhite};
     ${({ isSelected }) => isSelected && cellColors.selected};
     position: relative;
   `,
@@ -29,7 +29,7 @@ export const CellStyled = {
     width: 30%;
     aspect-ratio: 1;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.circle};
+    background-color: ${({ theme }) => theme.color.dark};
 
     top: 50%;
     left: 50%;

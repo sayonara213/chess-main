@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -27,8 +27,6 @@ const Board: React.FC<IBoardProps> = ({ board, setBoard }) => {
   };
 
   const click = (cell: CellEntity) => {
-    console.log(cell);
-
     if (
       selectedCell &&
       availableCells.some(
@@ -36,15 +34,21 @@ const Board: React.FC<IBoardProps> = ({ board, setBoard }) => {
       )
     ) {
       selectedCell.moveFigure(cell);
-      setSelectedCell(null);
-      setAvailableCells([]);
+      resetCells();
       return;
     }
 
     if (cell.figure) {
       setSelectedCell(cell);
       setAvailableCells(getAvailableCells(cell));
+    } else {
+      resetCells();
     }
+  };
+
+  const resetCells = () => {
+    setSelectedCell(null);
+    setAvailableCells([]);
   };
 
   return (
