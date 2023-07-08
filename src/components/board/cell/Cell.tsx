@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { DragPreviewImage, useDrag, useDrop } from 'react-dnd';
 
-import { CellEntity } from '../../../models/CellEntity';
 import { figuresMap } from '../../../models/figures/FiguresMap';
 
 import { CellStyled as Styled } from './Cell.styled';
@@ -9,47 +8,40 @@ import { CellStyled as Styled } from './Cell.styled';
 import { ICellProps } from './Cell.types';
 
 const Cell: React.FC<ICellProps> = ({ cell, onClick, isSelected, isAvailable }) => {
-  // const [draggingCell, setDraggingCell] = useState<CellEntity>({} as CellEntity);
+  const [{ isDragging }, dragRef, preview] = useDrag({
+    type: 'figure',
+    item: cell,
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  });
 
-  // const [{ isOver }, drop] = useDrop(
-  //   () => ({
-  //     accept: 'figure',
-  //     drop: () => moveFigure(),
-  //     collect: (monitor) => ({
-  //       isOver: !!monitor.isOver(),
-  //     }),
-  //   }),
-  //   [cell],
-  // );
-
-  // const [{ isDragging }, drag, preview] = useDrag(() => ({
-  //   type: 'figure',
-  //   item: { cell },
-  //   collect: (monitor) => ({
-  //     isDragging: !!monitor.isDragging(),
-  //   }),
-  // }));
-
-  // // useEffect(() => {
-  // //   console.log(cell);
-  // // }, [isOver]);
-
-  // useEffect(() => {
-  //   if (isDragging) {
-  //     setDraggingCell(cell);
-  //   }
-  // }, [isDragging]);
-
-  // const moveFigure = () => {
-  //   draggingCell.moveFigureTo(cell);
-  // };
+  const [{ isOver, canDrop }, dropRef] = useDrop({
+    accept: 'figure',
+    drop: () => {
+      onClick(cell);
+    },
+    canDrop: () => isAvailable,
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+      canDrop: !!monitor.canDrop(),
+    }),
+  });
 
   return (
-    <Styled.Cell color={cell.color} onClick={() => onClick(cell)} isSelected={isSelected}>
+    <Styled.Cell
+      ref={dropRef}
+      color={cell.color}
+      onMouseDown={() => onClick(cell)}
+      isSelected={isSelected || (isOver && canDrop)}>
       {cell.figure && (
         <>
-          <Styled.FigureContainer>
-            <Styled.Figure src={figuresMap[cell.figure.type]} />
+          <DragPreviewImage src={figuresMap[cell.figure.type]} connect={preview} />
+          <Styled.FigureContainer ref={dragRef}>
+            <Styled.Figure
+              src={figuresMap[cell.figure.type]}
+              style={{ opacity: isDragging ? 0.5 : 1 }}
+            />
           </Styled.FigureContainer>
         </>
       )}
