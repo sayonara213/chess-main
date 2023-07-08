@@ -11,14 +11,14 @@ const CustomInput: React.FC<ICustomInputProps> = ({
   onChange,
   placeholder,
   width = '100%',
-  height = '30px',
+  height = 'auto',
   autoFocus = false,
   fontFamily = 'regular',
   fontSize = 'medium',
   color = 'text',
   isPassword = false,
 }) => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
@@ -38,14 +38,7 @@ const CustomInput: React.FC<ICustomInputProps> = ({
           onChange={handleChange}
           autoFocus={autoFocus}
         />
-        {isPassword && (
-          <Icon
-            type={isVisible ? 'hide' : 'show'}
-            onClick={handleVisibility}
-            width='24px'
-            height='24px'
-          />
-        )}
+        {isPassword && <Icon type={isVisible ? 'hide' : 'show'} onClick={handleVisibility} />}
       </Styled.InputContainer>
       <Styled.Line />
     </Styled.Container>
