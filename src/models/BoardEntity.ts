@@ -17,9 +17,9 @@ export class BoardEntity {
       const row: CellEntity[] = [];
       for (let j = 0; j < 8; j++) {
         if ((i + j) % 2 === 0) {
-          row.push(new CellEntity(i, j, Colors.WHITE));
+          row.push(new CellEntity(j, i, Colors.WHITE, this));
         } else {
-          row.push(new CellEntity(i, j, Colors.BLACK));
+          row.push(new CellEntity(j, i, Colors.BLACK, this));
         }
       }
       this.cells.push(row);
@@ -28,7 +28,13 @@ export class BoardEntity {
   }
 
   public getCell(x: number, y: number): CellEntity {
-    return this.cells[x][y];
+    return this.cells[y][x];
+  }
+
+  public clone(): BoardEntity {
+    const board = new BoardEntity();
+    board.cells = this.cells;
+    return board;
   }
 
   public addFigures() {
@@ -57,5 +63,8 @@ export class BoardEntity {
       this.cells[1][i].setFigure(new PawnEntity(Colors.BLACK, this.cells[1][i]));
       this.cells[6][i].setFigure(new PawnEntity(Colors.WHITE, this.cells[6][i]));
     }
+    // this.cells[7][7].setFigure(new RookEntity(Colors.WHITE, this.cells[7][7]));
+    // this.cells[7][6].setFigure(new KnightEntity(Colors.WHITE, this.cells[7][6]));
+    // this.cells[7][5].setFigure(new BishopEntity(Colors.WHITE, this.cells[7][5]));
   }
 }

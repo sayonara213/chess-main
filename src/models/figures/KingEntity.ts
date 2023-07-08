@@ -7,4 +7,8 @@ export class KingEntity extends FigureEntity {
   constructor(color: Colors, cell: CellEntity) {
     super(color, color === Colors.WHITE ? 'kingWhite' : 'kingBlack', cell);
   }
+  canMove(target: CellEntity): boolean {
+    if (!super.canMove(target)) return false;
+    return true;
+  }
 }

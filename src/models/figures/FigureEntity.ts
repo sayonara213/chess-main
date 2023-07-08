@@ -14,8 +14,11 @@ export class FigureEntity {
     this.cell = cell;
   }
 
-  move(cell: CellEntity) {
-    this.cell = cell;
-    cell.setFigure(this);
+  canMove(target: CellEntity): boolean {
+    if (target.figure?.color === this.color) return false;
+    return true;
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  moveFigure(target: CellEntity) {}
 }
