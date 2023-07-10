@@ -3,11 +3,13 @@ import { Colors } from '../Colors';
 
 import { FigureEntity } from './FigureEntity';
 
+import { Figures } from '../../types/figures.types';
+
 export class PawnEntity extends FigureEntity {
   isFirstStep = true;
 
   constructor(color: Colors, cell: CellEntity) {
-    super(color, color === Colors.WHITE ? 'pawnWhite' : 'pawnBlack', cell);
+    super(color, color === Colors.WHITE ? 'pawnWhite' : 'pawnBlack', cell, Figures.PAWN);
   }
 
   canMove(target: CellEntity): boolean {
@@ -21,7 +23,19 @@ export class PawnEntity extends FigureEntity {
       target.x === this.cell.x &&
       target.isEmpty()
     ) {
-      return true;
+      if (super.preventCheck(target)) {
+        return true;
+      }
+    }
+
+    if (
+      target.y === this.cell.y + direction &&
+      (target.x === this.cell.x + 1 || target.x === this.cell.x - 1) &&
+      this.cell.isEnemy(target)
+    ) {
+      if (super.preventCheck(target)) {
+        return true;
+      }
     }
 
     return false;

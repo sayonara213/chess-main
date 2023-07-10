@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DragPreviewImage, useDrag, useDrop } from 'react-dnd';
 
 import { figuresMap } from '../../../models/figures/FiguresMap';

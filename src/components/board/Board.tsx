@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { CellEntity } from '../../models/CellEntity';
+import { Colors } from '../../models/Colors';
 
 import Cell from './cell/Cell';
 
@@ -10,9 +11,19 @@ import { BoardStyled as Styled } from './Board.styled';
 
 import { IBoardProps } from './Board.types';
 
-const Board: React.FC<IBoardProps> = ({ board, setBoard }) => {
+const Board: React.FC<IBoardProps> = ({ board, setBoard, setIsCheck, players }) => {
   const [selectedCell, setSelectedCell] = useState<CellEntity | null>(null);
   const [availableCells, setAvailableCells] = useState<CellEntity[]>([]);
+  const [currentPlayer, setCurrentPlayer] = useState(players[0]);
+
+  useEffect(() => {
+    const isCheck = board.isCheck(
+      currentPlayer.color === Colors.WHITE ? Colors.BLACK : Colors.WHITE,
+    );
+    setIsCheck(isCheck);
+
+    switchPlayer();
+  }, [board]);
 
   const getAvailableCells = (cell: CellEntity) => {
     const tempAvailableCells: CellEntity[] = [];
@@ -31,9 +42,11 @@ const Board: React.FC<IBoardProps> = ({ board, setBoard }) => {
       selectedCell &&
       availableCells.some(
         (availableCell) => availableCell.x === cell.x && availableCell.y === cell.y,
-      )
+      ) &&
+      currentPlayer.color === selectedCell.figure?.color
     ) {
       selectedCell.moveFigure(cell);
+      updateBoard();
       resetCells();
       return;
     }
@@ -49,6 +62,16 @@ const Board: React.FC<IBoardProps> = ({ board, setBoard }) => {
   const resetCells = () => {
     setSelectedCell(null);
     setAvailableCells([]);
+  };
+
+  const updateBoard = () => {
+    const newBoard = board.getCopyBoard();
+    setBoard(newBoard);
+  };
+
+  const switchPlayer = () => {
+    const newPlayer = currentPlayer === players[0] ? players[1] : players[0];
+    setCurrentPlayer(newPlayer);
   };
 
   return (

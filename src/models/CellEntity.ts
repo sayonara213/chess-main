@@ -1,4 +1,5 @@
 import { FigureEntity } from './figures/FigureEntity';
+import { KingEntity } from './figures/KingEntity';
 
 import { BoardEntity } from './BoardEntity';
 import { Colors } from './Colors';
@@ -34,6 +35,19 @@ export class CellEntity {
     return this.figure === null;
   }
 
+  isEnemy(target: CellEntity): boolean {
+    if (target.figure) {
+      return this.figure?.color !== target.figure.color;
+    }
+    return false;
+  }
+
+  isNear(target: CellEntity): boolean {
+    const dx = Math.abs(target.x - this.x);
+    const dy = Math.abs(target.y - this.y);
+    return (dx === 1 && dy === 0) || (dx === 0 && dy === 1) || (dx === 1 && dy === 1);
+  }
+
   isEmptyVertical(target: CellEntity): boolean {
     if (this.x !== target.x) {
       return false;
@@ -46,6 +60,7 @@ export class CellEntity {
         return false;
       }
     }
+
     return true;
   }
 

@@ -3,9 +3,11 @@ import { Colors } from '../Colors';
 
 import { FigureEntity } from './FigureEntity';
 
+import { Figures } from '../../types/figures.types';
+
 export class KnightEntity extends FigureEntity {
   constructor(color: Colors, cell: CellEntity) {
-    super(color, color === Colors.WHITE ? 'knightWhite' : 'knightBlack', cell);
+    super(color, color === Colors.WHITE ? 'knightWhite' : 'knightBlack', cell, Figures.KNIGHT);
   }
 
   canMove(target: CellEntity): boolean {
@@ -15,7 +17,9 @@ export class KnightEntity extends FigureEntity {
 
     if ((dx === 2 && dy === 1) || (dx === 1 && dy === 2)) {
       if (target.isEmpty() || target.figure?.color !== this.color) {
-        return true;
+        if (super.preventCheck(target)) {
+          return true;
+        }
       }
       return false;
     }
